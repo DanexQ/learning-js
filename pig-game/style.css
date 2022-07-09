@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background-image: linear-gradient(to top left, #753682, #bf2e34);
+  font-family: 'Nunito', sans-serif;
+  color: #222;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 60rem;
+  height: 75vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.75s;
+}
+
+.player--0 {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.player--1 {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.player--active {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+  position: absolute;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 2rem;
+  font-family: inherit;
+  border-radius: 5rem;
+  padding: 1rem 2rem;
+  color: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 1rem 1rem rgba(34, 34, 34, 0.2);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #fff;
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0.5rem 1rem rgba(34, 34, 34, 0.2);
+}
+
+.btn--new {
+  top: 20rem;
+}
+
+.btn--hold {
+  bottom: 24.5rem;
+}
+
+.btn--roll {
+  bottom: 33.5rem;
+}
+
+.name {
+  font-size: 5rem;
+  text-transform: uppercase;
+  margin-top: 10rem;
+}
+
+.score {
+  font-size: 9rem;
+  font-weight: 600;
+  margin-top: 5rem;
+  color: #c7365f;
+}
+
+.current {
+  margin-top: 13rem;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #c7365f;
+  padding: 3rem 5rem;
+  border-radius: 10px;
+  box-shadow: 1rem 1rem 1rem rgba(34, 34, 34, 0.2);
+}
+
+.dice {
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+  top: 45%;
+  transform: translateY(-50%);
+  box-shadow: 0 1rem 2rem rgba(34, 34, 34, 0.3);
+}
+
+.hidden {
+  display: none;
+}
+
+.winner {
+  background-color: #7dd56f;
+}
