@@ -36,7 +36,7 @@ main {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 7rem;
 }
 
 .between {
@@ -77,8 +77,8 @@ h1 {
   left: 50%;
   background-color: #eee;
   color: #222;
-  padding: 3rem;
-  font-size: 5rem;
+  padding: 5rem;
+  font-size: 6rem;
   transform: translate(-50%, -50%);
 }
 
@@ -94,7 +94,7 @@ h1 {
   font-size: 5rem;
   padding: 3rem;
   border: #eee solid 3px;
-  background-color: #222;
+  background-color: transparent;
   margin-bottom: 3rem;
   color: inherit;
   font-family: inherit;
@@ -104,7 +104,7 @@ h1 {
 
 /* RIGHT SIDE */
 .right {
-  font-size: 2rem;
+  font-size: 3rem;
   width: 50%;
 }
 
