@@ -1,37 +1,108 @@
 'use strict';
 
-function calcAge(birthYear) {
-  const age = 2037 - birthYear;
-  console.log(firstName);
+// function calcAge(birthYear) {
+//   const age = 2037 - birthYear;
+//   console.log(firstName);
 
-  function printAge() {
-    let output = `${firstName}, you are ${age}, born in ${birthYear}.`;
-    console.log(output);
+//   function printAge() {
+//     let output = `${firstName}, you are ${age}, born in ${birthYear}.`;
+//     console.log(output);
 
-    if (birthYear >= 1981 && birthYear <= 1996) {
-      var millenial = true;
-      const firstName = 'Steven';
-      const str = `Oh, and you're a millenial, ${firstName}`;
-      console.log(str);
+//     if (birthYear >= 1981 && birthYear <= 1996) {
+//       var millenial = true;
+//       const firstName = 'Steven';
+//       const str = `Oh, and you're a millenial, ${firstName}`;
+//       console.log(str);
 
-      function add(a, b) {
-        return a + b;
-      }
+//       function add(a, b) {
+//         return a + b;
+//       }
 
-      // completely new and different variable
-      const output = 'NEW OUTPUT';
+//       // completely new and different variable
+//       const output = 'NEW OUTPUT';
 
-      // the same variable, but reassigned
-      // output = 'NEW OUTPUT'
-      console.log(output);
-    }
-    console.log(millenial);
-    console.log(output);
-  }
+//       // the same variable, but reassigned
+//       // output = 'NEW OUTPUT'
+//       console.log(output);
+//     }
+//     console.log(millenial);
+//     console.log(output);
+//   }
 
-  printAge();
-  return age;
+//   printAge();
+//   return age;
+// }
+
+// const firstName = 'Daniel';
+// calcAge(1993);
+
+// next lesson
+
+// const calcAge = function (birthYear) {
+//   console.log(2037 - birthYear);
+//   console.log(this);
+// };
+
+// calcAge(1999);
+
+// const calcAgeArr = (birthYear) => {
+//   console.log(2037 - birthYear);
+//   console.log(this);
+// };
+
+// calcAgeArr(1999);
+
+// const jonas = {
+//   year: 1999,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year);
+//   },
+// };
+
+// jonas.calcAge();
+
+// const matilda = {
+//   year: 2004,
+// };
+
+// matilda.calcAge = jonas.calcAge;
+// matilda.calcAge();
+
+// console.log(matilda, jonas);
+
+// const f = jonas.calcAge;
+// f();
+
+//next lesson
+
+console.log(firstName);
+// console.log(job);
+// console.log(year);
+
+var firstName = 'Daniel';
+let job = 'programmer';
+const year = 1999;
+
+//functions
+console.log(addDecl(3, 5));
+function addDecl(a, b) {
+  return a + b;
 }
 
-const firstName = 'Daniel';
-calcAge(1993);
+// console.log(addExpr(3, 5));
+const addExpr = function (a, b) {
+  return a + b;
+};
+
+// console.log(addArrow(3, 5));
+const addArrow = (a, b) => a + b;
+
+if (!numProducts) deleteShoppingCar();
+
+var numProducts = 10;
+
+// example
+function deleteShoppingCar() {
+  console.log(`All product deleted!`);
+}
