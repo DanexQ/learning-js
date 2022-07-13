@@ -107,47 +107,95 @@
 //   console.log(`All product deleted!`);
 // }
 
+// //next lesson
+
+// var firstName = 'Jake';
+
+// const daniel = {
+//   firstName: 'Daniel',
+//   year: 1982,
+//   calcAge: function () {
+//     this.age = 2037 - this.year;
+//     console.log(this.age);
+
+//     // // Solution 1
+//     // const self = this;
+//     // const isMillenial = function () {
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     // };
+
+//     // Solution 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+
+//     isMillenial();
+//   },
+
+//   greet: () => console.log(`Hey ${this.firstName}!`),
+// };
+
+// daniel.greet();
+// daniel.calcAge();
+
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// const addArrow = (a, b) => {
+//   console.log(a + b);
+//   return a + b;
+// };
+
+// addArrow(2, 3);
+// addExpr(2, 4);
+
 //next lesson
 
-var firstName = 'Jake';
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age, oldAge);
 
-const daniel = {
-  firstName: 'Daniel',
-  year: 1982,
-  calcAge: function () {
-    this.age = 2037 - this.year;
-    console.log(this.age);
+// const me = {
+//   name: 'Daniel',
+//   age: 22,
+// };
 
-    // // Solution 1
-    // const self = this;
-    // const isMillenial = function () {
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    // };
+// const friend = me;
+// friend.age = 26;
+// console.log(me.age, friend.age);
 
-    // Solution 2
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
+//primitive
+let lastName = 'Julian';
+let oldLastName = lastName;
+lastName = 'Davis';
 
-    isMillenial();
-  },
-
-  greet: () => console.log(`Hey ${this.firstName}!`),
+//reference
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 24,
 };
 
-daniel.greet();
-daniel.calcAge();
+const marriedJessica = jessica;
 
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
+marriedJessica.lastName = 'Davis';
+console.log(jessica, marriedJessica);
+
+//copy
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 22,
+  family: ['Alice', 'Bob'],
 };
 
-const addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = 'Blacksmith';
 
-addArrow(2, 3);
-addExpr(2, 4);
+jessicaCopy.family.push('Mary');
+console.log(jessica2, jessicaCopy);
