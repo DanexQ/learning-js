@@ -1,21 +1,21 @@
 'use strict';
 
-// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-// const openingHours = {
-//   [weekdays[3]]: {
-//     open: 12,
-//     close: 22,
-//   },
-//   [weekdays[4]]: {
-//     open: 11,
-//     close: 23,
-//   },
-//   [weekdays[5]]: {
-//     open: 0,
-//     close: 20,
-//   },
-// };
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0,
+    close: 20,
+  },
+};
 
 // const restaurant = {
 //   name: 'Classico Italiano',
@@ -239,46 +239,46 @@
 
 // CODING CHALLENGE
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
 // const [players1, players2] = game.players;
 // const [gk, ...fieldPlayers] = players1;
@@ -368,22 +368,116 @@ const game = {
 
 // CODING CHALLENGE #2
 
-for (const [goal, player] of game.scored.entries()) {
-  console.log(`Goal ${goal + 1}: ${player}`);
-}
+// for (const [goal, player] of game.scored.entries()) {
+//   console.log(`Goal ${goal + 1}: ${player}`);
+// }
 
-let av = 0;
-for (const siem of Object.values(game.odds)) {
-  av += siem;
-}
-console.log(av / Object.values(game.odds).length);
+// let av = 0;
+// for (const siem of Object.values(game.odds)) {
+//   av += siem;
+// }
+// console.log(av / Object.values(game.odds).length);
 
-for (const [team, val] of Object.entries(game.odds)) {
-  console.log(`Odd of ${game[team] || 'draw'}: ${val} `);
-}
+// for (const [team, val] of Object.entries(game.odds)) {
+//   console.log(`Odd of ${game[team] || 'draw'}: ${val} `);
+// }
 
-let scorers = {};
-for (const x of game.scored) {
-  scorers[x] ? scorers[x]++ : (scorers[x] = 1);
+// let scorers = {};
+// for (const x of game.scored) {
+//   scorers[x] ? scorers[x]++ : (scorers[x] = 1);
+// }
+// console.log(scorers);
+
+//next lesson SETS
+// const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta']);
+
+// console.log(orderSet);
+// console.log(orderSet.size);
+// console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('Bread'));
+// orderSet.add('Garlic Bread');
+// orderSet.add('Garlic Bread');
+// orderSet.delete('Risotto');
+// console.log(orderSet);
+
+// for (const order of orderSet) console.log(order);
+
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// next lesson MAPS
+// const rest = new Map();
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbon, Portugal');
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open')
+//   .set(false, 'We are closed');
+// console.log(rest.get('name'));
+// console.log(rest.get(1));
+
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// console.log(rest);
+// console.log(rest.size);
+// rest.clear();
+// const arr = [1, 2];
+// rest.set(arr, 'test');
+// console.log(rest);
+// console.log(rest.get(arr));
+
+// const question = new Map([
+//   ['question', 'What is the best programming language?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Try again!'],
+// ]);
+
+// console.log(question);
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+// const answer = Number(prompt('Your answer'));
+// console.log(question.get(question.get('correct') === answer));
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+const events = [...new Set(gameEvents.values())];
+
+console.log(events);
+gameEvents.delete(64);
+console.log(gameEvents);
+
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes.`
+);
+
+for (const [time, event] of gameEvents) {
+  console.log(`${time < 45 ? '[FIRST' : '[SECOND'} HALF] ${time}: ${event}`);
 }
-console.log(scorers);
