@@ -1,21 +1,21 @@
 'use strict';
 
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-const openingHours = {
-  [weekdays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0,
-    close: 20,
-  },
-};
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0,
+//     close: 20,
+//   },
+// };
 
 // const restaurant = {
 //   name: 'Classico Italiano',
@@ -482,23 +482,116 @@ const openingHours = {
 //   console.log(`${time < 45 ? '[FIRST' : '[SECOND'} HALF] ${time}: ${event}`);
 // }
 
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
 
-console.log('B823'[0]);
-console.log(airline.length);
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-console.log(airline.indexOf('Portugal'));
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7));
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ') + 1));
-console.log(airline.slice(1, -1));
+// console.log('B823'[0]);
+// console.log(airline.length);
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('Portugal'));
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// console.log(airline.slice(1, -1));
 
-const checkMiddleSeat = function (seat) {
-  const isMiddle = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
-  console.log(`${isMiddle ? "It's in middle" : "It's not in the middle"}`);
+// const checkMiddleSeat = function (seat) {
+//   const isMiddle = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
+//   console.log(`${isMiddle ? "It's in middle" : "It's not in the middle"}`);
+// };
+
+// checkMiddleSeat('11A');
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// const passenger = 'DaNiEl';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+
+// console.log(passenger, passengerLower, passengerCorrect);
+
+// const email = 'hello@daniel.com';
+// const loginEmail = '   Hello@Daniel.Com \n';
+// const emailLower = loginEmail.toLowerCase();
+// const emailCorrect = emailLower.trim();
+// console.log(email, loginEmail, emailLower, emailCorrect);
+// console.log(email === emailCorrect);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail, email === normalizedEmail);
+
+// const priceGB = '288,98£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23';
+// console.log(announcement);
+// console.log(announcement.replaceAll('door', 'gate')); // it's working :D
+
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the new airbus family');
+// }
+
+// const checkBaggage = function (items) {
+//   const itemsLower = items.toLowerCase();
+//   if (itemsLower.includes('knife') || itemsLower.includes('gun')) {
+//     console.log(`You're not allowed on board`);
+//   } else {
+//     console.log(`Welcome abroad!`);
+//   }
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Daniel Nowak'.split(' '));
+
+const [firstName, lastName] = 'Daniel Szcz'.split(' ');
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const passenger = 'jessica ann smith davis';
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const name of names) {
+    // namesUpper.push(name[0].toUpperCase() + name.slice(1));
+    namesUpper.push(name.replace(name[0], name[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
 };
 
-checkMiddleSeat('11A');
+capitalizeName('jessica ann smith davis');
+capitalizeName('daniel szcz');
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+'));
+console.log('Daniel'.padEnd(25, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(4378182437284218));
+console.log(maskCreditCard('3829482700004392'));
+
+const message2 = 'Bad weather... All departures delayed\n';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(4);
