@@ -454,30 +454,51 @@ const openingHours = {
 // const answer = Number(prompt('Your answer'));
 // console.log(question.get(question.get('correct') === answer));
 
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
 
-const events = [...new Set(gameEvents.values())];
+// const events = [...new Set(gameEvents.values())];
 
-console.log(events);
-gameEvents.delete(64);
-console.log(gameEvents);
+// console.log(events);
+// gameEvents.delete(64);
+// console.log(gameEvents);
 
-console.log(
-  `An event happened, on average, every ${90 / gameEvents.size} minutes.`
-);
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes.`
+// );
 
-for (const [time, event] of gameEvents) {
-  console.log(`${time < 45 ? '[FIRST' : '[SECOND'} HALF] ${time}: ${event}`);
-}
+// for (const [time, event] of gameEvents) {
+//   console.log(`${time < 45 ? '[FIRST' : '[SECOND'} HALF] ${time}: ${event}`);
+// }
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log('B823'[0]);
+console.log(airline.length);
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  const isMiddle = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
+  console.log(`${isMiddle ? "It's in middle" : "It's not in the middle"}`);
+};
+
+checkMiddleSeat('11A');
