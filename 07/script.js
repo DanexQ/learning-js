@@ -61,6 +61,20 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movement) {
+  containerMovements.innerHTML = '';
+  movement.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `<div class="movements__row">
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+    <div class="movements__date">3 days ago</div>
+    <div class="movements__value">${mov} €</div>
+  </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -75,22 +89,73 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-let arr = ['a', 'b', 'c', 'd'];
+// let arr = ['a', 'b', 'c', 'd'];
 
-// SLICE
-console.log(arr.slice(2));
+// // SLICE
+// console.log(arr.slice(2));
 
-// SPLICE THE SAME AS SLICE BUT MUTATES THE ARRAY | IT'S REMOVING ITEMS || MUTATE
-console.log(arr.splice(2));
+// // SPLICE THE SAME AS SLICE BUT MUTATES THE ARRAY | IT'S REMOVING ITEMS || MUTATE
+// console.log(arr.splice(2));
 
-// REVERSE | AS THE NAME SUGGEST IT'S REVERSING ARR || MUTATE
-const arr2 = ['g', 'h', 'i', 'j', 'k'];
-console.log(arr2.reverse());
+// // REVERSE | AS THE NAME SUGGEST IT'S REVERSING ARR || MUTATE
+// const arr2 = ['g', 'h', 'i', 'j', 'k'];
+// console.log(arr2.reverse());
 
-// CONCAT
-const letters = arr.concat(arr2);
-const letters2 = [...arr, ...arr2];
-console.log(letters);
+// // CONCAT
+// const letters = arr.concat(arr2);
+// const letters2 = [...arr, ...arr2];
+// console.log(letters);
 
-// JOIN
-console.log(letters.join(' - '));
+// // JOIN
+// console.log(letters.join(' - '));
+
+// // AT | WE CAN USE NEGATIVE VALUES
+// console.log(arr.at(-1));
+// console.log(arr[0]);
+
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i}: You withdrew ${Math.abs(movement)}`);
+//   }
+// }
+
+// movements.forEach(function (mov, i, arr) {
+//   if (mov > 0) {
+//     console.log(`Movement ${i}: You deposited ${mov}`);
+//   } else {
+//     console.log(`Movement ${i}: You withdrew ${Math.abs(mov)}`);
+//   }
+// });
+
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
+
+// const currenciesUnique = new Set(['USD', 'EUR', 'GBP', 'EUR']);
+
+// currenciesUnique.forEach(function (value, _, map) {
+//   console.log(`${value}: ${value}`);
+// });
+
+// CODING CHALLENGE #1
+
+// const dogsJulia = [9, 16, 6, 8, 3];
+// const dogsKate = [10, 5, 6, 1, 4];
+
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const dogsJuliaCopy = dogsJulia.slice(1, -2);
+//   const dogsAge = [...dogsJuliaCopy, ...dogsKate]; // dogsJuliaCopy.
+//   dogsAge.forEach(function (dogAge, i) {
+//     if (dogAge > 3) {
+//       console.log(
+//         `Dog number ${i + 1} is an adult, and is ${dogAge} years old`
+//       );
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+//     }
+//   });
+// };
+
+// checkDogs(dogsJulia, dogsKate);
