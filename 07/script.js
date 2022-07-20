@@ -90,6 +90,25 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance} €`;
 };
 
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumIn.textContent = `${incomes} €`;
+
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(out)} €`;
+
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((mov) => (mov * account1.interestRate) / 100)
+    .reduce((acc, mov) => acc + mov);
+  labelSumInterest.textContent = `${interest} €`;
+};
+
+calcDisplaySummary(account1.movements);
 displayMovements(account1.movements);
 
 const user = `Steven Thomas Williams`;
@@ -182,20 +201,20 @@ calcDisplayBalance(account1.movements);
 
 // CODING CHALLENGE #2
 
-const calcAverageHumanAge = function (dogsAge) {
-  const humanAge = dogsAge.map(function (dogAge) {
-    if (dogAge <= 2) return 2 * dogAge;
-    else return 16 + dogAge * 4;
-  });
-  const adults = humanAge.filter((age) => age >= 18);
-  const averageAge = adults.reduce((acc, age) => acc + age / adults.length, 0);
-  console.log(humanAge, adults, averageAge);
-};
+// const calcAverageHumanAge = function (dogsAge) {
+//   const humanAge = dogsAge.map(function (dogAge) {
+//     if (dogAge <= 2) return 2 * dogAge;
+//     else return 16 + dogAge * 4;
+//   });
+//   const adults = humanAge.filter((age) => age >= 18);
+//   const averageAge = adults.reduce((acc, age) => acc + age / adults.length, 0);
+//   console.log(humanAge, adults, averageAge);
+// };
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-// const eurToUsd = 1.1;
+const eurToUsd = 1.1;
 
 // const movementsUSD = movements.map(function (mov) {
 //   return Math.trunc(mov * eurToUsd);
@@ -214,13 +233,34 @@ calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
 // console.log(movementDescriptions);
 
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
-console.log(deposits);
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+// console.log(deposits);
 
-const withdrawals = movements.filter((mov) => mov < 0);
-console.log(withdrawals);
+// const withdrawals = movements.filter((mov) => mov < 0);
+// console.log(withdrawals);
 
-const balance = movements.reduce((acc, curr) => acc + curr);
-console.log(balance);
+// const balance = movements.reduce((acc, curr) => acc + curr);
+// console.log(balance);
+
+// const totalDepositsUSD = Math.trunc(
+//   movements
+//     .filter((mov) => mov > 0)
+//     .map((mov) => mov * eurToUsd)
+//     .reduce((acc, mov) => acc + mov, 0)
+// );
+// console.log(totalDepositsUSD);
+// const calcAverageHumanAge = (dogsAge) => {
+//   const adultDogs = dogsAge
+//     .map((age) => (age <= 2 ? 2 * age : 16 + age * 4))
+//     .filter((age) => age >= 18)
+//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+//   console.log(adultDogs);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+movements.find((mov) => mov < 0);
+console.log(movements.find((mov) => mov < 0));
