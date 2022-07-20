@@ -73,8 +73,27 @@ const displayMovements = function (movement) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map((name) => name[0])
+      .join('');
+    console.log(acc);
+  });
+};
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+
 displayMovements(account1.movements);
 
+const user = `Steven Thomas Williams`;
+createUsernames(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -86,6 +105,7 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 
@@ -159,3 +179,48 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // };
 
 // checkDogs(dogsJulia, dogsKate);
+
+// CODING CHALLENGE #2
+
+const calcAverageHumanAge = function (dogsAge) {
+  const humanAge = dogsAge.map(function (dogAge) {
+    if (dogAge <= 2) return 2 * dogAge;
+    else return 16 + dogAge * 4;
+  });
+  const adults = humanAge.filter((age) => age >= 18);
+  const averageAge = adults.reduce((acc, age) => acc + age / adults.length, 0);
+  console.log(humanAge, adults, averageAge);
+};
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+// const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return Math.trunc(mov * eurToUsd);
+// });
+
+// console.log(movementsUSD);
+// const movementsUSDArrow = movements.map((mov) => Math.trunc(mov * eurToUsd));
+// console.log(movementsUSDArrow);
+
+// const movementDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+
+// console.log(movementDescriptions);
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(deposits);
+
+const withdrawals = movements.filter((mov) => mov < 0);
+console.log(withdrawals);
+
+const balance = movements.reduce((acc, curr) => acc + curr);
+console.log(balance);
