@@ -81,7 +81,6 @@ const createUsernames = function (accs) {
       .split(' ')
       .map((name) => name[0])
       .join('');
-    console.log(acc);
   });
 };
 
@@ -90,29 +89,55 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance} €`;
 };
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov);
   labelSumIn.textContent = `${incomes} €`;
 
-  const out = movements
+  const out = acc.movements
     .filter((mov) => mov < 0)
-    .reduce((acc, mov) => acc + mov);
+    .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)} €`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter((mov) => mov > 0)
-    .map((mov) => (mov * account1.interestRate) / 100)
+    .map((mov) => (mov * acc.interestRate) / 100)
     .reduce((acc, mov) => acc + mov);
   labelSumInterest.textContent = `${interest} €`;
 };
 
-calcDisplaySummary(account1.movements);
-displayMovements(account1.movements);
-
 const user = `Steven Thomas Williams`;
 createUsernames(accounts);
+
+///////////////////////////////
+// EVENT HANDLERS
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value
+  );
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = '1';
+
+    // DISPLAY SUMMARY
+    calcDisplaySummary(currentAccount);
+    // DISPLAY MOVEMENTS
+    displayMovements(currentAccount.movements);
+    // DISPLAY BALANCE
+    calcDisplayBalance(currentAccount.movements);
+    // CLEAR INPUT FIELDS
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+    inputCloseUsername.baseURI;
+  }
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -124,7 +149,6 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 
