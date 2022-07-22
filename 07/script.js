@@ -61,9 +61,9 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movement) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = '';
-  movement.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -84,9 +84,10 @@ const createUsernames = function (accs) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} €`;
+const calcDisplayBalance = function (acc) {
+  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = balance;
+  labelBalance.textContent = `${acc.balance} €`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -107,6 +108,15 @@ const calcDisplaySummary = function (acc) {
   labelSumInterest.textContent = `${interest} €`;
 };
 
+const updateUI = function (acc) {
+  // DISPLAY SUMMARY
+  calcDisplaySummary(acc);
+  // DISPLAY MOVEMENTS
+  displayMovements(acc);
+  // DISPLAY BALANCE
+  calcDisplayBalance(acc);
+};
+
 const user = `Steven Thomas Williams`;
 createUsernames(accounts);
 
@@ -114,6 +124,7 @@ createUsernames(accounts);
 // EVENT HANDLERS
 let currentAccount;
 
+// LOGIN
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
   currentAccount = accounts.find(
@@ -124,20 +135,76 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = '1';
-
-    // DISPLAY SUMMARY
-    calcDisplaySummary(currentAccount);
-    // DISPLAY MOVEMENTS
-    displayMovements(currentAccount.movements);
-    // DISPLAY BALANCE
-    calcDisplayBalance(currentAccount.movements);
+    updateUI(currentAccount);
     // CLEAR INPUT FIELDS
     inputLoginPin.value = inputLoginUsername.value = '';
     inputLoginPin.blur();
-    inputCloseUsername.baseURI;
+    inputCloseUsername.blur();
   }
 });
 
+// TRANSFER MONEY
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const accountTo = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  );
+  const amount = Number(inputTransferAmount.value);
+
+  // clear input fields
+  inputTransferAmount.value = inputTransferTo.value = '';
+  inputTransferAmount.blur();
+  inputTransferTo.blur();
+
+  if (
+    amount <= currentAccount.balance &&
+    accountTo &&
+    currentAccount.username !== accountTo?.username &&
+    amount > 0
+  ) {
+    // do the transfer
+    currentAccount.movements.push(-amount);
+    accountTo.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount);
+  }
+});
+
+// CLOSE ACCOUNT
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  const givenPIN = Number(inputClosePin.value);
+  const givenUsername = inputCloseUsername.value;
+  if (
+    givenPIN === currentAccount?.pin &&
+    givenUsername === currentAccount?.username
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+    inputClosePin.value = inputCloseUsername.value = '';
+    inputClosePin.blur();
+    inputCloseUsername.blur();
+  }
+});
+
+// LOAN REQUEST
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -238,7 +305,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 // calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 
 // const movementsUSD = movements.map(function (mov) {
 //   return Math.trunc(mov * eurToUsd);
@@ -286,5 +353,7 @@ const eurToUsd = 1.1;
 // calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 // calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
-movements.find((mov) => mov < 0);
-console.log(movements.find((mov) => mov < 0));
+// movements.find((mov) => mov < 0);
+// console.log(movements.find((mov) => mov < 0));
+// console.log(movements.some((mov) => mov > 2999));
+// console.log(movements.every((mov) => mov > -1000));
