@@ -402,11 +402,41 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // some practise
 const bankDepositSum = accounts
   .flatMap((acc) => acc.movements)
-  .filter((mov) => mov > 0)
-  .reduce((acc, mov) => acc + mov, 0);
+  .reduce((acc, mov) => (mov > 0 ? acc + mov : acc), 0);
 console.log(bankDepositSum);
 
 const numDeposits1000 = accounts
   .flatMap((acc) => acc.movements)
-  .filter((mov) => mov > 0).length;
+  .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
 console.log(numDeposits1000);
+
+const sums = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce(
+    (sums, curr) => {
+      // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+      sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr; // better | more professional
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(sums);
+
+const convertCaseTitle = function (title) {
+  const expections = ['a', 'an', 'but', 'the', 'or', 'on', 'in', 'with'];
+  const newTitle = title
+    .split(' ')
+    .reduce(
+      (all, curr) =>
+        expections.includes(curr)
+          ? all + curr + ' '
+          : all + curr[0].toUpperCase() + curr.slice(1).toLowerCase() + ' ',
+      ''
+    );
+  console.log(newTitle);
+};
+
+convertCaseTitle('this is a NICE title');
+convertCaseTitle('taco hemingway');
+convertCaseTitle('i am a plumber');
