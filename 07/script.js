@@ -61,9 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (acc) {
+const displayMovements = function (acc, sort = false) {
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
   containerMovements.innerHTML = '';
-  acc.movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `<div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -107,6 +110,13 @@ const calcDisplaySummary = function (acc) {
     .reduce((acc, mov) => acc + mov);
   labelSumInterest.textContent = `${interest} €`;
 };
+let htmlMovs;
+const htmlMovements = function () {
+  htmlMovs = Array.from(document.querySelectorAll('.movements__value'), (el) =>
+    el.textContent.replace(' €', '')
+  );
+  console.log(htmlMovs);
+};
 
 const updateUI = function (acc) {
   // DISPLAY SUMMARY
@@ -115,6 +125,7 @@ const updateUI = function (acc) {
   displayMovements(acc);
   // DISPLAY BALANCE
   calcDisplayBalance(acc);
+  htmlMovements();
 };
 
 const user = `Steven Thomas Williams`;
@@ -204,6 +215,14 @@ btnLoan.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
   inputLoanAmount.value = '';
+});
+
+// SORT
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted;
 });
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -357,3 +376,37 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(movements.find((mov) => mov < 0));
 // console.log(movements.some((mov) => mov > 2999));
 // console.log(movements.every((mov) => mov > -1000));
+
+// const arr = [[1, [2, 3]], 4, [5, 6, [7, 8]], 9];
+
+// console.log(arr.flat(3));
+// const allMovements = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(`All accounts balance: ${allMovements}`);
+
+// const accsMovements = accounts.flatMap((acc) => acc.movements);
+// console.log(accsMovements.sort((a, b) => a - b));
+
+// const arr = new Array(5);
+// console.log(arr);
+// arr.fill(1, 2, 4);
+// const x = Array.from({ length: 5 }, () => 2);
+// console.log(x);
+
+// const diceRolls = Array.from({ length: 100 }, () =>
+//   Math.trunc(Math.random() * 100)
+// );
+// console.log(diceRolls);
+
+// some practise
+const bankDepositSum = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(bankDepositSum);
+
+const numDeposits1000 = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((mov) => mov > 0).length;
+console.log(numDeposits1000);
