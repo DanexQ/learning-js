@@ -400,43 +400,110 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(diceRolls);
 
 // some practise
-const bankDepositSum = accounts
-  .flatMap((acc) => acc.movements)
-  .reduce((acc, mov) => (mov > 0 ? acc + mov : acc), 0);
-console.log(bankDepositSum);
+// const bankDepositSum = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce((acc, mov) => (mov > 0 ? acc + mov : acc), 0);
+// console.log(bankDepositSum);
 
-const numDeposits1000 = accounts
-  .flatMap((acc) => acc.movements)
-  .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
-console.log(numDeposits1000);
+// const numDeposits1000 = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce((count, curr) => (curr >= 1000 ? ++count : count), 0);
+// console.log(numDeposits1000);
 
-const sums = accounts
-  .flatMap((acc) => acc.movements)
-  .reduce(
-    (sums, curr) => {
-      // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
-      sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr; // better | more professional
-      return sums;
-    },
-    { deposits: 0, withdrawals: 0 }
-  );
+// const sums = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, curr) => {
+//       // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+//       sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr; // better | more professional
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
 
-console.log(sums);
+// console.log(sums);
 
-const convertCaseTitle = function (title) {
-  const expections = ['a', 'an', 'but', 'the', 'or', 'on', 'in', 'with'];
-  const newTitle = title
-    .split(' ')
-    .reduce(
-      (all, curr) =>
-        expections.includes(curr)
-          ? all + curr + ' '
-          : all + curr[0].toUpperCase() + curr.slice(1).toLowerCase() + ' ',
-      ''
-    );
-  console.log(newTitle);
-};
+// const convertCaseTitle = function (title) {
+//   const expections = ['a', 'an', 'but', 'the', 'or', 'on', 'in', 'with'];
+//   const newTitle = title
+//     .split(' ')
+//     .reduce(
+//       (all, curr) =>
+//         expections.includes(curr)
+//           ? all + curr + ' '
+//           : all + curr[0].toUpperCase() + curr.slice(1).toLowerCase() + ' ',
+//       ''
+//     );
+//   console.log(newTitle);
+// };
 
-convertCaseTitle('this is a NICE title');
-convertCaseTitle('taco hemingway');
-convertCaseTitle('i am a plumber');
+// convertCaseTitle('this is a NICE title');
+// convertCaseTitle('taco hemingway');
+// convertCaseTitle('i am a plumber');
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// 1
+// dogs.forEach(function (dog) {
+//   dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28 * 0.001);
+// });
+
+dogs.forEach(
+  (dog) => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+);
+
+// 2
+dogs.forEach((dog) =>
+  dog.owners.includes('Sarah')
+    ? console.log(
+        `He eats too ${dog.curFood > dog.recommendedFood ? 'much' : 'little'}`
+      )
+    : ''
+);
+
+const dogSarah = dogs.find((dog) => dog.owners.includes('Sarah'));
+console.log(dogSarah);
+
+// 3
+// const ownersEatTooMuch = [];
+// const ownersEatTooLittle = [];
+// dogs.forEach((dog) =>
+//   dog.curFood > dog.recommendedFood
+//     ? ownersEatTooMuch.push(...dog.owners)
+//     : ownersEatTooLittle.push(...dog.owners)
+// );
+
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recommendedFood)
+  .flatMap((dog) => dog.owners);
+
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recommendedFood)
+  .flatMap((dog) => dog.owners);
+console.log(ownersEatTooLittle, ownersEatTooMuch);
+
+// 4
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+console.log(dogs);
+
+// 5
+console.log(dogs.some((dog) => dog.curFood === dog.recommendedFood));
+
+// 6 & 7
+console.log(
+  dogs.filter(
+    (dog) =>
+      dog.curFood > dog.recommendedFood * 0.9 &&
+      dog.curFood < dog.recommendedFood * 1.1
+  )
+);
+
+// 8
+const dogsCopy = dogs.slice().sort((a, b) => a.curFood - b.curFood);
+console.log(dogsCopy);
