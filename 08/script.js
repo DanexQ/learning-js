@@ -103,7 +103,7 @@ const displayMovements = function (movements, sort = false) {
 };
 
 const calcDisplayBalance = function (acc) {
-  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0).toFixed(2);
   labelBalance.textContent = `${acc.balance}€`;
 };
 
@@ -111,12 +111,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter((mov) => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -149,6 +149,11 @@ const updateUI = function (acc) {
 
   // Display summary
   calcDisplaySummary(acc);
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (isEven(i)) {
+      row.style.backgroundColor = 'lightgrey';
+    }
+  });
 };
 
 ///////////////////////////////////////
@@ -206,7 +211,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (
     amount > 0 &&
@@ -256,3 +261,32 @@ btnSort.addEventListener('click', function (e) {
 // LECTURES
 
 console.log(Math.max(2, 5, 33, 64, 3));
+console.log(Math.max(2, 5, 3, '33', 3));
+console.log(Math.min(2, 5, 3, '33', 3));
+console.log(Math.PI);
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+console.log(Math.trunc(Math.random() * 8 + 1) + 1);
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+
+console.log(randomInt(20, 30));
+console.log(Math.trunc(23.33));
+console.log(Math.floor(11.2));
+console.log(Math.floor(-11.2));
+console.log(Math.trunc(-11.6));
+console.log(Math.ceil(22.2));
+console.log(Math.ceil(-22.2));
+console.log(+(2.574326).toFixed(3));
+
+const isEven = (n) => n % 2 === 0;
+const isOdd = (n) => n % 2 === 1;
+
+console.log(isEven(22));
+console.log(isOdd(22));
+
+[...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+  if (isEven(i)) {
+    row.style.backgroundColor = 'blue';
+  }
+});
