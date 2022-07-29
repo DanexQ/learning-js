@@ -54,6 +54,59 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 });
 
 ///////////////////////////////////////////
+//////////// TABBED COMPONENT /////////////
+///////////////////////////////////////////
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+console.log(tabs);
+tabsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const clicked = e.target.closest('.operations__tab');
+
+  // when nothing is clicked then stop imediately | MORE MODERN STYLE TO MAKE A GUARD CLAUSE
+  if (!clicked) return;
+
+  //// OLD SCHOOL WAY
+  // if(clicked){
+
+  // }
+  tabsContent.forEach((content) =>
+    content.classList.remove('operations__content--active')
+  );
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+
+  tabs.forEach((tab) => tab.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  console.log(clicked);
+});
+
+///////////////////////////////////////////
+/////////// MENU FADE ANIMATION ///////////
+///////////////////////////////////////////
+const nav = document.querySelector('.nav__links');
+const fadeHover = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const otherLinks = link.closest('nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    otherLinks.forEach((el) => {
+      if (el !== link) el.style.opacity = opacity;
+    });
+    logo.style.opacity = opacity;
+  }
+};
+
+nav.addEventListener('mouseover', (e) => fadeHover(e, 0.5));
+
+nav.addEventListener('mouseout', (e) => fadeHover(e, 1));
+
+///////////////////////////////////////////
 /////////////// LECTURES //////////////////
 ///////////////////////////////////////////
 
@@ -83,7 +136,7 @@ message.innerHTML = `We use cookies for improved functionality and analytics. <b
 // // Making clone of a message and inserting it first
 // header.prepend(message.cloneNode(true));
 
-// Insert sth before or after element
+// // Insert something before or after element
 // header.after(message);
 header.before(message);
 // document
@@ -189,4 +242,31 @@ btnScrollTo.addEventListener('click', function (e) {
 // });
 // document.querySelector('.nav').addEventListener('click', function (e) {
 //   this.style.backgroundColor = randomColor();
+// });
+
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// h1.firstElementChild.style.color = 'blue';
+// h1.lastElementChild.style.color = 'red';
+
+// // Going upwards
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// h1.closest('.header').style.background = `var(--gradient-secondary)`;
+
+// // Going backwards
+// console.log(h1.nextElementSibling);
+// console.log(h1.nextSibling);
+// console.log(h1.previousElementSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.parentElement.children);
+
+// const h1siblings1 = h1.parentElement.children;
+// const h1siblings2 = [...h1.parentElement.children];
+
+// console.log(h1siblings1, h1siblings2);
+// [...h1.parentElement.children].forEach(function (child) {
+//   if (child !== h1) child.style.backgroundColor = '#333';
 // });
